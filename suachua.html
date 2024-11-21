@@ -13,43 +13,40 @@
             height: 100vh;
             margin: 0;
             background-color: #f4f4f9;
-            overflow-x: hidden; /* Chống cuộn ngang */
-            padding: 0 20px; /* Thêm padding cho body để tránh bị cắt */
-            text-align: center; /* Căn giữa tất cả nội dung */
-            flex-direction: column; /* Xếp theo chiều dọc */
+            overflow-x: hidden;
+            padding: 0 20px;
+            text-align: center;
+            flex-direction: column;
         }
 
-        /* Phần chứa tiêu đề */
         .title {
             margin-bottom: 30px;
-            margin-top: -120px; /* Kéo tiêu đề lên trên thêm 120px */
+            margin-top: -120px;
             font-size: 36px;
         }
 
-        /* Phần chứa các nút và nội dung */
         .main-container {
             display: flex;
             justify-content: center;
-            gap: 50px; /* Khoảng cách giữa nút và nội dung */
+            gap: 50px;
             width: 100%;
             align-items: center;
-            flex-wrap: wrap; /* Cho phép các phần tử xếp chồng khi màn hình nhỏ */
+            flex-wrap: wrap;
         }
 
-        /* Phần chứa các nút */
         .button-container {
             display: flex;
-            flex-direction: column; /* Các nút sắp xếp theo chiều dọc */
+            flex-direction: column; /* Ban đầu là dọc */
             gap: 20px;
             transition: all 0.5s ease;
             position: relative;
-            width: 100%; /* Đảm bảo không vượt quá chiều rộng màn hình */
-            max-width: 300px; /* Giới hạn chiều rộng của container nút */
+            width: 100%;
+            max-width: 300px;
         }
 
         .button {
-            padding: 20px 40px; /* Tăng kích thước nút */
-            font-size: 32px; /* Tăng kích thước chữ */
+            padding: 20px 40px;
+            font-size: 32px;
             background-color: #4CAF50;
             color: white;
             border: none;
@@ -63,89 +60,59 @@
             background-color: #45a049;
         }
 
-        /* Phần chứa nội dung */
         .content {
-            width: 100%; /* Chiều rộng nội dung linh động */
-            max-width: 900px; /* Tăng chiều rộng của cửa sổ nội dung */
-            height: 400px; /* Chiều cao của cửa sổ */
+            width: 100%;
+            max-width: 900px;
+            height: 400px;
             font-size: 18px;
             color: #333;
-            display: none; /* Ban đầu ẩn nội dung */
+            display: none;
             transition: all 0.3s ease;
             opacity: 0;
-            overflow-y: auto; /* Hiển thị thanh cuộn dọc khi cần thiết */
+            overflow-y: auto;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
             position: relative;
-            transform: translateX(50px); /* Đưa nội dung ra ngoài một chút sang trái */
+            transform: translateX(50px);
         }
 
         .content.show {
             display: block;
             opacity: 1;
-            transform: translateX(0); /* Nội dung di chuyển vào khi hiển thị */
+            transform: translateX(0);
         }
 
         .selected {
-            transform: scale(1.1); /* Giảm hiệu ứng phóng to nút */
+            transform: scale(1.1);
             background-color: #8BC34A;
         }
 
+        /* Hiệu ứng di chuyển bên trái */
         .moved-left {
-            transform: translateX(-50px); /* Giảm di chuyển nút sang trái */
+            transform: translateX(-50px);
         }
 
-        .content-text {
-            transition: all 0.3s ease;
-        }
-
-        /* Media Queries cho màn hình nhỏ hơn 768px */
-        @media (max-width: 768px) {
-            .title {
-                font-size: 28px;
-                margin-top: -80px; /* Giảm khoảng cách khi màn hình nhỏ */
-            }
-
-            .main-container {
-                flex-direction: column; /* Xếp theo chiều dọc khi màn hình nhỏ */
-                gap: 20px; /* Giảm khoảng cách giữa các phần tử */
+        /* Giai đoạn 2 và 3: Media Queries cho màn hình nhỏ hơn 1550px */
+        @media (max-width: 1550px) {
+            .moved-left {
+                transform: translateY(-50px); /* Di chuyển container nút lên trên */
+                flex-direction: row; /* Các nút chuyển thành hình ngang ngay cả khi thu nhỏ */
+                gap: 10px; /* Giảm khoảng cách giữa các nút */
+                justify-content: center; /* Căn giữa các nút */
             }
 
             .button-container {
-                max-width: 100%; /* Nút sẽ chiếm hết chiều rộng có sẵn */
+                flex-wrap: nowrap; /* Đảm bảo các nút không xuống dòng */
+                max-width: 100%;
                 align-items: center; /* Căn giữa các nút */
             }
 
             .button {
-                padding: 15px 30px; /* Giảm kích thước nút */
-                font-size: 24px; /* Giảm kích thước chữ */
-            }
-
-            .content {
-                max-width: 100%; /* Nội dung sẽ chiếm hết chiều rộng có sẵn */
-                height: auto; /* Điều chỉnh chiều cao của nội dung */
-                font-size: 16px; /* Giảm kích thước chữ */
-            }
-        }
-
-        /* Media Queries cho màn hình dưới 480px */
-        @media (max-width: 480px) {
-            .button-container {
-                flex-direction: row; /* Chuyển các nút sang chiều ngang */
-                justify-content: center; /* Căn giữa các nút */
-                gap: 10px; /* Giảm khoảng cách giữa các nút */
-            }
-
-            .button {
-                font-size: 18px; /* Giảm kích thước chữ cho màn hình rất nhỏ */
-                padding: 12px 20px; /* Giảm kích thước nút */
-            }
-
-            .content {
-                font-size: 14px; /* Giảm kích thước chữ nội dung */
-                height: auto; /* Tự động điều chỉnh chiều cao */
+                font-size: 18px;
+                padding: 12px 20px;
+                flex-shrink: 0;
             }
         }
     </style>
@@ -155,59 +122,45 @@
         <h1>Chọn Nút</h1>
     </div>
     <div class="main-container">
-        <!-- Phần chứa các nút -->
         <div class="button-container" id="buttonContainer">
-            <button class="button" onclick="showContent(1)" aria-label="Hiển thị nội dung của Nút 1">Nút 1</button>
-            <button class="button" onclick="showContent(2)" aria-label="Hiển thị nội dung của Nút 2">Nút 2</button>
-            <button class="button" onclick="showContent(3)" aria-label="Hiển thị nội dung của Nút 3">Nút 3</button>
-            <button class="button" onclick="showContent(4)" aria-label="Hiển thị nội dung của Nút 4">Nút 4</button>
+            <button class="button" onclick="showContent(1)">Nút 1</button>
+            <button class="button" onclick="showContent(2)">Nút 2</button>
+            <button class="button" onclick="showContent(3)">Nút 3</button>
+            <button class="button" onclick="showContent(4)">Nút 4</button>
         </div>
-
-        <!-- Phần chứa nội dung -->
         <div class="content" id="content">
-            <p id="contentText" class="content-text">
-                Nội dung của Nút 1: Đây là một đoạn văn bản dài hơn để bạn có thể kiểm tra thanh cuộn dọc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Cras id dui eu nulla convallis sollicitudin. Proin tincidunt, magna id gravida condimentum, ipsum purus posuere velit, vitae congue nulla ipsum non dolor. Nulla facilisi. Vivamus sagittis diam non quam sagittis, at malesuada arcu tempor. Suspendisse potenti. Vestibulum sit amet sapien magna. Duis et magna ultricies, volutpat justo a, rutrum odio. Donec a enim id magna eleifend gravida. Aliquam erat volutpat. Phasellus euismod lorem eu ante malesuada, vel laoreet nulla pretium. Nulla bibendum mollis ante, vel vulputate dui faucibus ut. Pellentesque ut vestibulum arcu. Nulla volutpat cursus erat, eu malesuada justo fermentum a. Vivamus ac fringilla orci. Nulla facilisi. Quisque quis eros at orci euismod convallis eget ut lorem. Duis ac suscipit nunc. Vivamus congue sapien et purus fermentum, eget auctor felis sollicitudin. Phasellus ac magna risus. Sed nec massa sem.
-            </p>
+            <p id="contentText"></p>
         </div>
     </div>
-
     <script>
         function showContent(buttonNumber) {
-            let buttons = document.querySelectorAll('.button');
-            let buttonContainer = document.getElementById('buttonContainer');
-            let contentText = document.getElementById('contentText');
-            let content = document.getElementById('content');
+            const buttons = document.querySelectorAll('.button');
+            const buttonContainer = document.getElementById('buttonContainer');
+            const contentText = document.getElementById('contentText');
+            const content = document.getElementById('content');
 
-            // Di chuyển tất cả các nút sang bên trái khi một nút được nhấn
-            buttonContainer.classList.add('moved-left');
+            // Xác định màn hình lớn hay nhỏ
+            if (window.innerWidth > 768) {
+                buttonContainer.classList.add('moved-left');
+            } else {
+                buttonContainer.classList.add('moved-left');
+            }
 
             // Hiển thị nội dung
-            content.classList.add('show');  // Hiển thị nội dung khi nút được nhấn
+            content.classList.add('show');
 
-            // Thay đổi kích thước nút được chọn
-            buttons.forEach(button => {
-                button.classList.remove('selected');
-            });
+            // Đánh dấu nút được chọn
+            buttons.forEach(button => button.classList.remove('selected'));
             buttons[buttonNumber - 1].classList.add('selected');
 
-            // Hiển thị nội dung tương ứng với nút đã chọn
-            switch (buttonNumber) {
-                case 1:
-                    contentText.textContent = "Nội dung của Nút 1: Đây là một đoạn văn bản dài hơn để bạn có thể kiểm tra thanh cuộn dọc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Cras id dui eu nulla convallis sollicitudin. Proin tincidunt, magna id gravida condimentum, ipsum purus posuere velit, vitae congue nulla ipsum non dolor. Nulla facilisi. Vivamus sagittis diam non quam sagittis, at malesuada arcu tempor. Suspendisse potenti.";
-                    break;
-                case 2:
-                    contentText.textContent = "Nội dung của Nút 2: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Cras id dui eu nulla convallis sollicitudin. Proin tincidunt, magna id gravida condimentum, ipsum purus posuere velit, vitae congue nulla ipsum non dolor.";
-                    break;
-                case 3:
-                    contentText.textContent = "Nội dung của Nút 3: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Cras id dui eu nulla convallis sollicitudin. Proin tincidunt, magna id gravida condimentum, ipsum purus posuere velit, vitae congue nulla ipsum non dolor.";
-                    break;
-                case 4:
-                    contentText.textContent = "Nội dung của Nút 4: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Cras id dui eu nulla convallis sollicitudin. Proin tincidunt, magna id gravida condimentum, ipsum purus posuere velit, vitae congue nulla ipsum non dolor.";
-                    break;
-                default:
-                    contentText.textContent = "Nội dung mặc định.";
-                    break;
-            }
+            // Nội dung tương ứng
+            const contents = [
+                "Nội dung của Nút 1: Đây là một đoạn văn bản dài hơn để bạn có thể kiểm tra thanh cuộn dọc.",
+                "Nội dung của Nút 2: Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "Nội dung của Nút 3: Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "Nội dung của Nút 4: Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            ];
+            contentText.textContent = contents[buttonNumber - 1] || "Nội dung mặc định.";
         }
     </script>
 </body>
