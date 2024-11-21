@@ -21,7 +21,7 @@
 
         .title {
             margin-bottom: 30px;
-            margin-top: -120px;
+            margin-top: -100px;
             font-size: 36px;
         }
 
@@ -68,7 +68,7 @@
 
         .content {
             width: 100%;
-            max-width: 900px;
+            max-width: 1100px; /* Chiều rộng của cửa sổ nội dung */
             height: 400px;
             font-size: 18px;
             color: #333;
@@ -81,22 +81,18 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
             position: relative;
-            transform: translateX(50px);
+            transform: translateX(0); /* Vị trí ban đầu */
         }
 
         .content.show {
             display: block;
             opacity: 1;
-            transform: translateX(0);
+            transform: translateX(0px); /* Di chuyển cửa sổ nội dung sang trái */
         }
 
         .selected {
             transform: scale(1.1);
             background-color: #8BC34A;
-        }
-
-        .moved-left {
-            transform: translateX(-50px);
         }
 
         /* Media Query cho màn hình nhỏ */
@@ -123,7 +119,6 @@
             }
         }
 
-
         @media (max-width: 768px) {
             .moved-left {
                 transform: translateY(-50px);
@@ -146,8 +141,6 @@
                 height: auto;
             }
         }
-
-
 
     </style>
 </head>
