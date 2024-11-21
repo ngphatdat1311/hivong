@@ -32,20 +32,23 @@
             width: 100%;
             align-items: center;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .button-container {
             display: flex;
-            flex-direction: column; /* Ban đầu là dọc */
+            flex-direction: column;
             gap: 20px;
             transition: all 0.5s ease;
             position: relative;
             width: 100%;
-            max-width: 300px;
+            max-width: 400px;
+            justify-content: center;
+            align-items: center;
         }
 
         .button {
-            padding: 20px 40px;
+            padding: 20px;
             font-size: 32px;
             background-color: #4CAF50;
             color: white;
@@ -54,6 +57,9 @@
             transition: all 0.3s ease;
             border-radius: 10px;
             outline: none;
+            width: 100%;
+            box-sizing: border-box;
+            min-height: 70px;
         }
 
         .button:hover {
@@ -89,44 +95,72 @@
             background-color: #8BC34A;
         }
 
-        /* Hiệu ứng di chuyển bên trái */
         .moved-left {
             transform: translateX(-50px);
         }
 
-        /* Giai đoạn 2 và 3: Media Queries cho màn hình nhỏ hơn 1500px */
+        /* Media Query cho màn hình nhỏ */
         @media (max-width: 1550px) {
             .moved-left {
-                transform: translateY(-50px); /* Di chuyển container nút lên trên */
-                flex-direction: row; /* Các nút chuyển thành hình ngang ngay cả khi thu nhỏ */
-                gap: 10px; /* Giảm khoảng cách giữa các nút */
-                justify-content: center; /* Căn giữa các nút */
+                transform: translateY(-50px);
+                flex-direction: row;
+                gap: 10px;
+                justify-content: center;
             }
 
             .button-container {
-                flex-wrap: nowrap; /* Đảm bảo các nút không xuống dòng */
+                flex-wrap: nowrap;
                 max-width: 100%;
-                align-items: center; /* Căn giữa các nút */
+                justify-content: space-between;
             }
 
             .button {
-                font-size: 18px;
-                padding: 12px 20px;
+                font-size: 24px;
+                padding: 15px 30px;
                 flex-shrink: 0;
+                width: 200px;
+                height: 150px;
             }
         }
+
+
+        @media (max-width: 768px) {
+            .moved-left {
+                transform: translateY(-50px);
+                flex-direction: row;
+                gap: 10px;
+                justify-content: center;
+            }
+
+            .button-container {
+                flex-wrap: wrap;
+                max-width: 100%;
+                justify-content: space-between;
+            }
+
+            .button {
+                font-size: 20px;
+                padding: 12px 30px;
+                flex-shrink: 0;
+                width: 100%;
+                height: auto;
+            }
+        }
+
+
+
     </style>
 </head>
 <body>
     <div class="title">
-        <h1>Chọn Nút</h1>
+        <h1>SỮA CHUA</h1>
     </div>
     <div class="main-container">
         <div class="button-container" id="buttonContainer">
-            <button class="button" onclick="showContent(1)">Nút 1</button>
-            <button class="button" onclick="showContent(2)">Nút 2</button>
-            <button class="button" onclick="showContent(3)">Nút 3</button>
-            <button class="button" onclick="showContent(4)">Nút 4</button>
+            <button class="button" onclick="showContent(1)">NGUYÊN BẢN</button>
+            <button class="button" onclick="showContent(2)">NGỌT NHIỀU</button>
+            <button class="button" onclick="showContent(3)">NGỌT VỪA PHẢI</button>
+            <button class="button" onclick="showContent(4)">NGỌT ÍT</button>
         </div>
         <div class="content" id="content">
             <p id="contentText"></p>
