@@ -36,7 +36,7 @@
 
         .button-container {
             display: flex;
-            flex-direction: column; /* Ban đầu là dọc */
+            flex-direction: column;
             gap: 20px;
             transition: all 0.5s ease;
             position: relative;
@@ -89,30 +89,46 @@
             background-color: #8BC34A;
         }
 
-        /* Hiệu ứng di chuyển bên trái */
         .moved-left {
             transform: translateX(-50px);
         }
 
-        /* Giai đoạn 2 và 3: Media Queries cho màn hình nhỏ hơn 1550px */
+        /* Hiệu ứng khi thu nhỏ màn hình */
         @media (max-width: 1550px) {
-            .moved-left {
-                transform: translateY(-50px); /* Di chuyển container nút lên trên */
-                flex-direction: row; /* Các nút chuyển thành hình ngang ngay cả khi thu nhỏ */
-                gap: 10px; /* Giảm khoảng cách giữa các nút */
-                justify-content: center; /* Căn giữa các nút */
+            .main-container {
+                flex-direction: column; /* Chuyển các phần tử thành cột */
+                align-items: center; /* Căn giữa các phần tử */
             }
 
             .button-container {
-                flex-wrap: nowrap; /* Đảm bảo các nút không xuống dòng */
+                flex-direction: row; /* Các nút sẽ nằm ngang */
+                gap: 10px; /* Giảm khoảng cách giữa các nút */
+                justify-content: center; /* Căn giữa các nút */
+                width: 100%;
                 max-width: 100%;
-                align-items: center; /* Căn giữa các nút */
             }
 
             .button {
                 font-size: 18px;
                 padding: 12px 20px;
                 flex-shrink: 0;
+            }
+
+            .content {
+                max-width: 100%; /* Đảm bảo content không vượt quá màn hình nhỏ */
+                height: auto; /* Cho phép chiều cao tự động điều chỉnh */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .button {
+                font-size: 16px; /* Giảm kích thước chữ của nút */
+                padding: 10px 15px; /* Giảm kích thước nút */
+            }
+
+            .content {
+                padding: 15px; /* Điều chỉnh padding của content */
+                font-size: 16px; /* Giảm kích thước chữ trong content */
             }
         }
     </style>
