@@ -3,227 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>abcd</title>
+    <title>Giao diện Web</title>
     <style>
+        /* Cấu trúc chung của trang */
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
-
-        header {
-            background-color: #f4f4f4;
-            padding: 20px 0;
-            font-size: 48px; /* Cỡ chữ tiêu đề */
-            font-weight: bold;
-            color: #ff6347; /* Màu chữ tiêu đề */
-        }
-
-        main {
-            flex: 1;
-            display: flex;
-        }
-
-        .column {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #ccc;
-        }
-
-        .column:nth-child(1) {
-            background-color: #f0f8ff;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .column:nth-child(2) {
-            background-color: #faebd7;
-            flex-direction: column;
-            padding: 10px;
-        }
-
-        .title {
-            font-size: 36px; /* Cỡ chữ tiêu đề */
-            font-weight: bold;
-            margin: 20px 0;
-            padding: 10px;
-            width: 100%;
-            background-color: transparent;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 50px;
-        }
-
-        .buttons {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            width: 100%;
-            flex: 1;
-            padding: 10px;
-            gap: 10px; /* Giúp các nút có khoảng cách đồng đều */
-        }
-
-        .image-container {
-            flex: 1;
-            background-image: url('https://monngonviet.vn/wp-content/uploads/2021/01/1112-1200x676-14.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 60%; /* Tăng chiều cao hình ảnh */
-            margin-top: 30px;
-        }
-
-        button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            margin: 0;
             padding: 0;
-            font-size: 20px;
-            font-weight: bold;
-            color: white;
-            background-color: #4CAF50;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            width: 90%;
-            margin: 0 auto;
-            height: 150px; /* Đảm bảo chiều cao nút là như nhau */
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
+            background-color: #f4f4f4;
         }
 
-        button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        button img {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* Tiêu đề Web */
+        header {
+            background-color: white;
+            text-align: center;
+            padding: 20px 0;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
         }
 
-        button:hover img {
-            transform: scale(1.1);
-        }
-
-        button span {
-            z-index: 1;
-            font-size: 20px;
+        /* Tiêu đề Web - Cỡ chữ lớn hơn */
+        header h1 {
+            font-size: 48px; /* Tăng cỡ chữ */
             font-weight: bold;
-            color: rgb(255, 255, 255);
         }
 
-        /* Thay đổi nền của nút "SẢN PHẨM KHÁC" */
-        .no-image-button {
-            background-color: #ff6347; /* Màu nền mới (ví dụ: đỏ tươi) */
-            color: #fff !important;
+        /* Tiêu đề 1 - căn trái màn hình */
+        .main-content .title1 h2 {
+            text-align: left;
             font-weight: bold;
-            height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: none;
-            border-radius: 10px;
-            font-size: 20px;
-        }
-
-        .no-image-button img {
-            display: none;
-        }
-
-        .no-image-button span {
-            color: #fff !important;
-        }
-
-        /* Điều chỉnh khoảng cách và chiều cao của các nút trong cột B */
-        .column:nth-child(2) .buttons button {
-            height: 150px; /* Đảm bảo chiều cao của các nút là giống nhau */
-        }
-
-        .column:nth-child(2) .buttons button:nth-child(4) {
-            margin-top: 10px; /* Điều chỉnh khoảng cách giữa "Nút 5" và "Sản phẩm khác" */
-        }
-
-        .column:nth-child(2) .buttons button span {
-            position: absolute;
-            font-size: 20px;
-            font-weight: bold;
-            color: white;
-            z-index: 1; /* Đảm bảo chữ hiển thị trên hình ảnh */
-        }
-
-        .column:nth-child(2) .buttons button:hover {
-            background-color: rgba(0, 0, 0, 0.4); /* Thêm hiệu ứng màu khi hover */
-        }
-
-        /* Tạo đường link thay vì nút cho "HƯỚNG DẪN SỬ DỤNG" */
-        .link-button {
-            color: #007bff;
-            font-size: 20px;
-            text-decoration: none;
-            font-weight: bold;
+            font-size: 36px;
+            margin-left: 50px;
             margin-top: 20px;
         }
 
-        .link-button:hover {
-            text-decoration: underline;
+        /* Các nội dung nhỏ - căn lề trái */
+        .small-contents {
+            width: 80%;
+            margin: 20px auto;
+            text-align: left; /* Căn lề trái cho các nội dung */
+        }
+
+        .small-contents ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .small-contents ul li {
+            margin: 20px 0;
+            padding: 20px;
+            font-size: 24px; /* Tăng cỡ chữ lớn hơn cho nội dung */
+            line-height: 1.6;
+            border-radius: 4px;
+            background-color: #ffffff;
+        }
+
+        /* Tạo khoảng cách phía dưới */
+        .main-content {
+            padding: 20px;
         }
     </style>
 </head>
 <body>
+    <!-- Tiêu đề Web -->
     <header>
-        BẠN MUỐN TÌM HIỂU VỀ?
+        <h1>THIẾT BỊ CẢM BIẾN NHIỆT ĐỘ</h1>
     </header>
-    <main>
-        <!-- Cột A -->
-        <div class="column">
-            <div class="title">SẢN PHẨM</div>
-            <div class="buttons">
-                <button onclick="handleButtonClick(event, 'https://ngphatdat1311.github.io/hivong/suachua.html')">
-                    <img src="https://monngonviet.vn/wp-content/uploads/2021/01/1112-1200x676-14.jpg" alt="Hình ảnh 1">
-                    <span>SỮA CHUA</span>
-                </button>
-                <button>
-                    <img src="https://file.vnua.edu.vn/data/0/images/2021/03/03/host/ap-trung-ga.jpg?w=680" alt="Hình ảnh 2">
-                    <span>ẤP TRỨNG</span>
-                </button>
-                <button>
-                    <img src="https://bepcongnghiepinox.com.vn/upload/elfinder/Blog/loi%20ich%20cua%20viec%20say%20kho%20thuc%20pham/loi-ich-cua-viec-say-kho-thuc-pham-chat-luong.jpg" alt="Hình ảnh 3">
-                    <span>SẤY KHÔ THỰC PHÂm</span>
-                </button>
-                <button class="no-image-button">
-                    <span>SẢN PHẨM KHÁC</span>
-                </button>
-            </div>
-        </div>
-        <!-- Cột B -->
-        <div class="column">
-            <div class="title">THIẾT BỊ</div>
-            <div class="image-container"></div>
-            <div class="buttons">
-                <!-- Xóa thẻ img ở nút 5 và thay bằng đường link -->
-                <a href="https://example.com" class="link-button">HƯỚNG DẪN SỬ DỤNG</a>
-            </div>
-        </div>
-    </main>
 
-    <script>
-        function handleButtonClick(event, url) {
-            event.preventDefault(); // Ngăn hành vi mặc định của nút
-            window.open(url, "_blank"); // Mở liên kết trong tab mới
-        }
-    </script>
+    <!-- Tiêu đề 1 và các nội dung nhỏ -->
+    <section class="main-content">
+        <div class="title1">
+            <h2>Hướng dẫn sử dụng</h2>
+        </div>
+
+        <!-- Các nội dung nhỏ -->
+        <div class="small-contents">
+            <ul>
+                <!-- "Cách vào chế độ cài đặt" lên trước các nội dung khác -->
+                <li><strong>Cách vào chế độ cài đặt:</strong><br>
+                    Khi máy đang hoạt động, nhấn và giữ nút OK khoảng 5 giây để vào chế độ cài đặt.<br>
+                    Các chế độ sẽ lần lượt hiển thị trên màn hình dưới dạng P0, P1, P2, v.v.<br>
+                    Sau khi chọn chế độ muốn thay đổi, dùng nút + và - để điều chỉnh giá trị.<br>
+                    Nhấn OK để xác nhận và chuyển sang chế độ tiếp theo.
+                </li>
+                <li><strong>P0 - Cài đặt chế độ làm nóng/làm lạnh (H/L):</strong><br>
+                    P0 xác định chế độ hoạt động của mô-đun, tức là nó sẽ làm nóng hay làm lạnh khi nhiệt độ đạt đến giá trị cài đặt.<br>
+                    Cách sử dụng: Nhấn và giữ nút "OK" để vào chế độ cài đặt.<br>
+                    Chế độ H (Heating - làm nóng): Mô-đun sẽ bật thiết bị làm nóng khi nhiệt độ dưới mức cài đặt.<br>
+                    Chế độ L (Cooling - làm lạnh): Mô-đun sẽ bật thiết bị làm lạnh khi nhiệt độ vượt quá mức cài đặt.<br>
+                    Cách cài đặt: Sử dụng nút "+" và "-" để thay đổi giữa H và L. Nhấn "OK" để xác nhận.
+                </li>
+                <li><strong>P1 - Cài đặt nhiệt độ giới hạn (Điểm cài đặt):</strong><br>
+                    P1 cho phép bạn thiết lập điểm nhiệt độ mà mô-đun sẽ bắt đầu hoạt động (bật hoặc tắt thiết bị làm nóng/làm lạnh).<br>
+                    Cách sử dụng: Sau khi vào chế độ cài đặt, sử dụng nút "+" và "-" để thay đổi giá trị nhiệt độ bạn muốn cài đặt.<br>
+                    Nhấn "OK" để xác nhận giá trị nhiệt độ cài đặt.
+                </li>
+                <li><strong>P2 - Cài đặt độ chênh lệch nhiệt độ (Hysteresis):</strong><br>
+                    P2 cho phép bạn thiết lập mức độ chênh lệch nhiệt độ giữa điểm cài đặt và điểm kích hoạt.<br>
+                    Cài đặt giá trị chênh lệch nhiệt độ giúp tránh việc bật/tắt thiết bị quá thường xuyên, giúp thiết bị hoạt động ổn định hơn.<br>
+                    Cách thay đổi: Dùng nút "+" và "-" để điều chỉnh độ chênh lệch nhiệt độ, sau đó nhấn "OK" để xác nhận.
+                </li>
+                <li><strong>P3 - Cài đặt nhiệt độ tối đa (Max Temp):</strong><br>
+                    P3 là chế độ cài đặt nhiệt độ tối đa mà bạn muốn hệ thống hoạt động. Khi nhiệt độ vượt quá giá trị này, hệ thống có thể tự động ngừng hoặc cảnh báo.<br>
+                    Cách sử dụng: Bạn có thể sử dụng nút "+" và "-" để thay đổi giá trị nhiệt độ tối đa.<br>
+                    Nhấn "OK" để xác nhận.
+                </li>
+                <li><strong>P4 - Cài đặt nhiệt độ tối thiểu (Min Temp):</strong><br>
+                    P4 cho phép bạn cài đặt nhiệt độ tối thiểu, dưới mức này hệ thống có thể ngừng hoạt động hoặc chuyển sang chế độ khác.<br>
+                    Điều chỉnh giá trị nhiệt độ tối thiểu và nhấn "OK" để xác nhận.
+                </li>
+                <li><strong>P5 - Chế độ độ ổn định hệ thống:</strong><br>
+                    P5 liên quan đến việc thiết lập độ ổn định của hệ thống, cho phép bạn thay đổi các tham số kỹ thuật để tăng hoặc giảm độ chính xác của các phép đo.<br>
+                    Cách sử dụng tương tự các chế độ khác, sử dụng "+" và "-" để thay đổi giá trị và nhấn "OK" để xác nhận.
+                </li>
+                <li><strong>Các lưu ý:</strong><br>
+                    Chế độ P0 rất quan trọng vì nó quyết định liệu mô-đun sẽ hoạt động trong chế độ làm nóng hay làm lạnh. Bạn cần cài đặt chính xác theo nhu cầu của mình.<br>
+                    Chế độ P2 (chênh lệch nhiệt độ) rất hữu ích trong việc tránh tình trạng bật/tắt thiết bị quá thường xuyên, giúp hệ thống ổn định hơn.<br>
+                    Sau khi hoàn thành việc cài đặt, nếu không thao tác gì trong vài giây, hệ thống sẽ tự động thoát khỏi chế độ cài đặt và lưu các thay đổi.
+                </li>
+            </ul>
+        </div>
+    </section>
 </body>
 </html>
