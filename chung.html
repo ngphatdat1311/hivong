@@ -46,7 +46,6 @@
             padding: 10px;
         }
 
-        /* Căn giữa tiêu đề a và b */
         .title {
             font-size: 36px; /* Cỡ chữ tiêu đề */
             font-weight: bold;
@@ -67,6 +66,7 @@
             width: 100%;
             flex: 1;
             padding: 10px;
+            gap: 10px; /* Giúp các nút có khoảng cách đồng đều */
         }
 
         .image-container {
@@ -74,7 +74,7 @@
             background-image: url('https://monngonviet.vn/wp-content/uploads/2021/01/1112-1200x676-14.jpg');
             background-size: cover;
             background-position: center;
-            height: 85%;
+            height: 60%; /* Tăng chiều cao hình ảnh */
             margin-top: 30px;
         }
 
@@ -92,8 +92,8 @@
             border-radius: 10px;
             cursor: pointer;
             width: 90%;
-            margin: 10px auto;
-            height: 150px;
+            margin: 0 auto;
+            height: 150px; /* Đảm bảo chiều cao nút là như nhau */
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
@@ -122,21 +122,13 @@
             z-index: 1;
             font-size: 20px;
             font-weight: bold;
-            color: white;
+            color: rgb(255, 255, 255);
         }
 
-        .column:nth-child(1) .buttons button:nth-child(4) {
-            margin-bottom: 50px;
-        }
-
-        .column:nth-child(2) .buttons button:nth-child(1) {
-            margin-top: 50px;
-        }
-
-        /* Nút không có hình ảnh */
+        /* Thay đổi nền của nút "SẢN PHẨM KHÁC" */
         .no-image-button {
-            background-color: #4CAF50; /* Nền xanh */
-            color: #000 !important; /* Màu chữ đen, sử dụng !important */
+            background-color: #ff6347; /* Màu nền mới (ví dụ: đỏ tươi) */
+            color: #fff !important;
             font-weight: bold;
             height: 150px;
             display: flex;
@@ -152,32 +144,64 @@
         }
 
         .no-image-button span {
-            color: #000 !important; /* Đảm bảo màu chữ đen */
+            color: #fff !important;
+        }
+
+        /* Điều chỉnh khoảng cách và chiều cao của các nút trong cột B */
+        .column:nth-child(2) .buttons button {
+            height: 150px; /* Đảm bảo chiều cao của các nút là giống nhau */
+        }
+
+        .column:nth-child(2) .buttons button:nth-child(4) {
+            margin-top: 10px; /* Điều chỉnh khoảng cách giữa "Nút 5" và "Sản phẩm khác" */
+        }
+
+        .column:nth-child(2) .buttons button span {
+            position: absolute;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            z-index: 1; /* Đảm bảo chữ hiển thị trên hình ảnh */
+        }
+
+        .column:nth-child(2) .buttons button:hover {
+            background-color: rgba(0, 0, 0, 0.4); /* Thêm hiệu ứng màu khi hover */
+        }
+
+        /* Tạo đường link thay vì nút cho "HƯỚNG DẪN SỬ DỤNG" */
+        .link-button {
+            color: #007bff;
+            font-size: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .link-button:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <header>
-        abcd
+        BẠN MUỐN TÌM HIỂU VỀ?
     </header>
     <main>
         <!-- Cột A -->
         <div class="column">
-            <div class="title">a</div>
+            <div class="title">SẢN PHẨM</div>
             <div class="buttons">
-                <button>
-                    <a href="https://ngphatdat1311.github.io/hivong/suachua.html" target="_blank">
-                        <img src="https://monngonviet.vn/wp-content/uploads/2021/01/1112-1200x676-14.jpg" alt="Hình ảnh 1">
-                        <span>Nút 1</span>
-                    </a>
+                <button onclick="handleButtonClick(event, 'https://ngphatdat1311.github.io/hivong/suachua.html')">
+                    <img src="https://monngonviet.vn/wp-content/uploads/2021/01/1112-1200x676-14.jpg" alt="Hình ảnh 1">
+                    <span>SỮA CHUA</span>
                 </button>
                 <button>
                     <img src="https://file.vnua.edu.vn/data/0/images/2021/03/03/host/ap-trung-ga.jpg?w=680" alt="Hình ảnh 2">
-                    <span>Nút 2</span>
+                    <span>ẤP TRỨNG</span>
                 </button>
                 <button>
                     <img src="https://bepcongnghiepinox.com.vn/upload/elfinder/Blog/loi%20ich%20cua%20viec%20say%20kho%20thuc%20pham/loi-ich-cua-viec-say-kho-thuc-pham-chat-luong.jpg" alt="Hình ảnh 3">
-                    <span>Nút 3</span>
+                    <span>SẤY KHÔ THỰC PHÂm</span>
                 </button>
                 <button class="no-image-button">
                     <span>SẢN PHẨM KHÁC</span>
@@ -186,15 +210,20 @@
         </div>
         <!-- Cột B -->
         <div class="column">
-            <div class="title">b</div>
+            <div class="title">THIẾT BỊ</div>
             <div class="image-container"></div>
             <div class="buttons">
-                <button>
-                    <img src="https://via.placeholder.com/50" alt="Hình ảnh 5">
-                    <span>Nút 5</span>
-                </button>
+                <!-- Xóa thẻ img ở nút 5 và thay bằng đường link -->
+                <a href="https://ngphatdat1311.github.io/hivong/thietbi.html" class="link-button">HƯỚNG DẪN SỬ DỤNG</a>
             </div>
         </div>
     </main>
+
+    <script>
+        function handleButtonClick(event, url) {
+            event.preventDefault(); // Ngăn hành vi mặc định của nút
+            window.open(url, "_blank"); // Mở liên kết trong tab mới
+        }
+    </script>
 </body>
 </html>
