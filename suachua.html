@@ -9,19 +9,18 @@
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: center;  /* Giữ phần tử căn giữa theo chiều dọc */
             height: 100vh;
             margin: 0;
             background-color: #f4f4f9;
             overflow-x: hidden;
-            padding: 0 20px;
+            padding: 20px 20px 0 20px;  /* Giảm padding trên */
             text-align: center;
             flex-direction: column;
         }
 
         .title {
             margin-bottom: 30px;
-            margin-top: -100px;
             font-size: 36px;
         }
 
@@ -33,13 +32,14 @@
             align-items: center;
             flex-wrap: wrap;
             justify-content: center;
+            max-width: 100%;
+            margin-top: 10px; /* Thêm margin-top nhỏ để đưa phần dưới lên trên */
         }
 
         .button-container {
             display: flex;
             flex-direction: column;
             gap: 20px;
-            transition: all 0.5s ease;
             position: relative;
             width: 100%;
             max-width: 400px;
@@ -68,7 +68,7 @@
 
         .content {
             width: 100%;
-            max-width: 1100px; /* Chiều rộng của cửa sổ nội dung */
+            max-width: 1100px;
             height: 400px;
             font-size: 18px;
             color: #333;
@@ -81,13 +81,14 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
             position: relative;
-            transform: translateX(0); /* Vị trí ban đầu */
+            transform: translateX(0);
+            text-align: left;
+            padding-left: 0;
         }
 
         .content.show {
             display: block;
             opacity: 1;
-            transform: translateX(0px); /* Di chuyển cửa sổ nội dung sang trái */
         }
 
         .selected {
@@ -95,25 +96,35 @@
             background-color: #8BC34A;
         }
 
-        /* Media Query cho màn hình nhỏ */
+        .update-content {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        /* Đảm bảo khi thu nhỏ cửa sổ không bị dồn xuống dưới */
         @media (max-width: 1550px) {
             .moved-left {
-                transform: translateY(-50px);
+                transform: translateY(0);
                 flex-direction: row;
                 gap: 10px;
                 justify-content: center;
             }
 
             .button-container {
-                flex-wrap: nowrap;
+                flex-wrap: wrap;
                 max-width: 100%;
-                justify-content: space-between;
+                justify-content: center;
             }
 
             .button {
                 font-size: 24px;
                 padding: 15px 30px;
-                flex-shrink: 0;
                 width: 200px;
                 height: 150px;
             }
@@ -121,7 +132,7 @@
 
         @media (max-width: 768px) {
             .moved-left {
-                transform: translateY(-50px);
+                transform: translateY(0);
                 flex-direction: row;
                 gap: 10px;
                 justify-content: center;
@@ -136,9 +147,20 @@
             .button {
                 font-size: 20px;
                 padding: 12px 30px;
-                flex-shrink: 0;
                 width: 100%;
                 height: auto;
+            }
+
+            .update-content {
+                font-size: 24px;
+                font-weight: bold;
+                color: #333;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                padding: 10px;
             }
         }
 
@@ -166,28 +188,57 @@
             const contentText = document.getElementById('contentText');
             const content = document.getElementById('content');
 
-            // Xác định màn hình lớn hay nhỏ
             if (window.innerWidth > 768) {
                 buttonContainer.classList.add('moved-left');
             } else {
                 buttonContainer.classList.add('moved-left');
             }
 
-            // Hiển thị nội dung
             content.classList.add('show');
 
-            // Đánh dấu nút được chọn
             buttons.forEach(button => button.classList.remove('selected'));
             buttons[buttonNumber - 1].classList.add('selected');
 
-            // Nội dung tương ứng
             const contents = [
-                "Nội dung của Nút 1: Đây là một đoạn văn bản dài hơn để bạn có thể kiểm tra thanh cuộn dọc.",
-                "Nội dung của Nút 2: Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "Nội dung của Nút 3: Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "Nội dung của Nút 4: Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                `<strong> *CÁCH LÀM SỮA CHUA (CÔNG THỨC CHỈ DÙNG SỮA, KHÔNG THÊM NƯỚC)</strong><br><br>
+                <strong> - Nguyên liệu:</strong>
+                <ul>
+                    <li>380g sữa đặc (khoảng 1 lon)</li>
+                    <li>1 lít sữa tươi không đường (khoảng hơn 4 bịch)</li>
+                    <li>2 hũ sữa chua không đường</li>
+                    <li>100g đường (có thể không cho thêm đường)</li>
+                    <li>Có thể sử dụng thêm một số loại mứt trái cây (mứt chanh dây, việt quốc,…) để tăng hương vị hoặc dùng nước lá dứa, hoa đậu biết để tạo màu</li>
+                </ul>
+                
+                <strong> - Các bước thực hiện:</strong>
+                <ol>
+                    <li><strong>Bước 1: Chuẩn bị sữa</strong><br>
+                    1. Cho sữa tươi kèm sữa đặc vào nồi và khuấy đều.<br>
+                    2. Đun hỗn hợp sữa đến khoảng 70-80°C (không cần sôi), khuấy nhẹ nhàng để đường tan hết.<br>
+                    3. Tắt bếp, để sữa nguội đến khoảng 40-45°C (sờ tay vào thấy ấm vừa phải).</li>
+                    <li><strong>Bước 2: Trộn men sữa chua</strong><br>
+                    1. Lấy sữa chua cái ra, để ở nhiệt độ phòng cho mềm.<br>
+                    2. Khi sữa đã nguội đến nhiệt độ cần thiết, cho sữa chua cái vào hỗn hợp và khuấy đều để men hòa quyện với sữa.</li>
+                    <li><strong>Bước 3: Ủ sữa chua</strong><br>
+                    1. Rót hỗn hợp sữa và men vào các hũ đựng sữa chua.<br>
+                    2. Đặt các hũ vào thiết bị ủ sữa chua và ủ ở nhiệt độ 40-43°C trong khoảng 6-8 giờ.<br>
+                    3. Sau khi ủ đủ thời gian, kiểm tra sữa chua đã đông đặc chưa. Nếu sữa chua đạt độ sánh, bạn lấy ra và cho vào tủ lạnh khoảng 2-4 giờ để sữa chua lạnh ngon hơn.</li>
+                    <li><strong>Bước 4: Thưởng thức</strong><br>
+                    Khi sữa chua đã lạnh, bạn có thể lấy ra dùng kèm trái cây tươi, mật ong hoặc các loại topping tùy thích.</li>
+                </ol><br>
+
+                <strong> - Mẹo làm sữa chua ngon:</strong>
+                <ul>
+                    <li>Nên dùng sữa chua cái chất lượng để có men tốt.</li>
+                    <li>Ủ sữa chua ở nhiệt độ ổn định, tránh di chuyển hoặc mở nắp trong quá trình ủ.</li>
+                    <li>Thời gian ủ càng lâu, sữa chua sẽ càng chua, vì vậy bạn có thể điều chỉnh tùy theo sở thích.</li>
+                </ul>`,
+                `<div class="update-content">Nội dung đang được cập nhật</div>`,
+                `<div class="update-content">Nội dung đang được cập nhật</div>`,
+                `<div class="update-content">Nội dung đang được cập nhật</div>`
             ];
-            contentText.textContent = contents[buttonNumber - 1] || "Nội dung mặc định.";
+
+            contentText.innerHTML = contents[buttonNumber - 1];
         }
     </script>
 </body>
