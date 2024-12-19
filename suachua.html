@@ -9,12 +9,11 @@
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
-            align-items: center;  /* Giữ phần tử căn giữa theo chiều dọc */
+            align-items: center;
             height: 100vh;
             margin: 0;
             background-color: #f4f4f9;
-            overflow-x: hidden;
-            padding: 20px 20px 0 20px;  /* Giảm padding trên */
+            padding: 20px;
             text-align: center;
             flex-direction: column;
         }
@@ -22,6 +21,7 @@
         .title {
             margin-bottom: 30px;
             font-size: 36px;
+            color: #333;
         }
 
         .main-container {
@@ -33,7 +33,7 @@
             flex-wrap: wrap;
             justify-content: center;
             max-width: 100%;
-            margin-top: 10px; /* Thêm margin-top nhỏ để đưa phần dưới lên trên */
+            margin-top: 10px;
         }
 
         .button-container {
@@ -83,7 +83,6 @@
             position: relative;
             transform: translateX(0);
             text-align: left;
-            padding-left: 0;
         }
 
         .content.show {
@@ -175,12 +174,13 @@
             <button class="button" onclick="showContent(1)">NGUYÊN BẢN</button>
             <button class="button" onclick="showContent(2)">NGỌT NHIỀU</button>
             <button class="button" onclick="showContent(3)">NGỌT VỪA PHẢI</button>
-            <button class="button" onclick="showContent(4)">NGỌT ÍT</button>
+
         </div>
         <div class="content" id="content">
             <p id="contentText"></p>
         </div>
     </div>
+
     <script>
         function showContent(buttonNumber) {
             const buttons = document.querySelectorAll('.button');
